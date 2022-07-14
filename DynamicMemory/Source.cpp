@@ -10,8 +10,10 @@ void Clear(T**& arr, const int rows);
 
 void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(char arr[], const int n, int minRand = 0, int maxRand = 100);
+void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(int** arr, const int rows, const int cols);
 void FillRand(char** arr, const int rows, const int cols);
+void FillRand(double** arr, const int rows, const int cols);
 template<typename T>
 void Print(T arr[], const int n);
 template<typename T>
@@ -36,6 +38,9 @@ void push_col_right(T** arr, const int rows, int& cols);
 
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
+
+typedef double DataType;
+
 
 void main()
 {
@@ -69,7 +74,7 @@ void main()
 	cout << "¬ведите количество элементов строки: "; cin >> cols;
 
 	//ќбъ€вление двумерного динамического массива:
-	char** arr = Allocate<char>(rows, cols);
+	DataType** arr = Allocate<DataType>(rows, cols);
 
 	//»спользование двумерного динамического массива:
 	FillRand(arr, rows, cols);
@@ -113,13 +118,38 @@ template<typename T>void Clear(T**& arr, const int rows)
 		//когда к массиву обрат€тс€ после его удалени€, что приведЄт к ошибке на этапе выполнени€ и аварийному замершению программы. 
 	//ƒл€ того чтобы избежать таких ситуаций указатели лучше занул€ть после удалени€б и при каждом обращении к массиву провер€ть массив на nullptr.
 }
+void FillRand(int arr[], const int n, int minRand, int maxRand)
+{
+	for (int i = 0; i < n; i++)
+	{
+		*(arr + i) = rand() % (maxRand - minRand)+minRand;
+	}
+}
 void FillRand(char arr[], const int n, int minRand, int maxRand)
 {
 	for (int i = 0; i < n; i++)
 	{
 		*(arr + i) = rand();
 	}
-
+}
+void FillRand(double arr[], const int n, int minRand, int maxRand)
+{
+	minRand *= 100;
+	maxRand *= 100;
+	for (int i = 0; i < n; i++)
+	{
+		*(arr + i) = double(rand() % (maxRand - minRand) + minRand)/100;
+	}
+}
+void FillRand(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand()%100;
+		}
+	}
 }
 void FillRand(char** arr, const int rows, const int cols)
 {
@@ -128,6 +158,17 @@ void FillRand(char** arr, const int rows, const int cols)
 		for (int j = 0; j < cols; j++)
 		{
 			arr[i][j] = rand();
+		}
+	}
+}
+void FillRand(double** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand()%10000;
+			arr[i][j]/=100;
 		}
 	}
 }
