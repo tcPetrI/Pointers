@@ -69,7 +69,7 @@ void main()
 	cout << "¬ведите количество элементов строки: "; cin >> cols;
 
 	//ќбъ€вление двумерного динамического массива:
-	int** arr = Allocate<int>(rows, cols);
+	char** arr = Allocate<char>(rows, cols);
 
 	//»спользование двумерного динамического массива:
 	FillRand(arr, rows, cols);
@@ -229,7 +229,7 @@ template<typename T>T** pop_row_down(T** arr, int& rows, const int cols)
 {
 	//rows--;
 	delete[] arr[rows-1];
-	int** buffer = new T*[--rows] {};
+	T** buffer = new T*[--rows] {};
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
 	delete[] arr;
 	return buffer;
