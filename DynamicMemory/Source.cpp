@@ -182,7 +182,7 @@ int* push_front(int arr[], int& n, int value)
 int* pop_back(int* arr, int& n)
 {
 	int* buffer = new int[--n]{};
-	for (int i = 0; i < n; i++) buffer[i] = arr[i + 1];
+	for (int i = 0; i < n; i++) buffer[i] = arr[i];
 	delete[] arr;
 	return buffer;
 }
@@ -190,7 +190,7 @@ int* pop_back(int* arr, int& n)
 int* pop_front(int* arr, int& n)
 {
 	int* buffer = new int[--n]{};
-	for (int i = 0; i < n; i++) buffer[i] = arr[i];
+	for (int i = 0; i < n; i++) buffer[i] = arr[i + 1];
 	delete[] arr;
 	return buffer;
 }
